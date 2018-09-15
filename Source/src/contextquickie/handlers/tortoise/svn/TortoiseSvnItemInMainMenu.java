@@ -1,5 +1,6 @@
 package contextquickie.handlers.tortoise.svn;
 
+import contextquickie.Activator;
 import contextquickie.handlers.tortoise.AbstractTortoiseItemInMainMenu;
 import contextquickie.preferences.PreferenceConstants;
 import contextquickie.tools.Registry;
@@ -41,6 +42,11 @@ public class TortoiseSvnItemInMainMenu extends AbstractTortoiseItemInMainMenu
   @Override
   protected final boolean isEntryInMainMenu(final String entry)
   {
+    if (Activator.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.TORTOISE_SVN.getEnabled()) == false)
+    {
+      return false;
+    }
+
     final long int32BitMaxValue = 0xFFFFFFFFL;
     long entryValue = 0;
     final long compareValue;
